@@ -1,6 +1,6 @@
 const Brand = require("../models/brandModel");
 const asyncHandler = require("express-async-handler");
-const validateMongoDbId = require("../utils/validateMongoDbId");
+// const validateMongoDbId = require("../utils/validateMongoDbId");
 
 // Create Brand
 const createBrand = asyncHandler(async (req, res) => {
@@ -17,7 +17,7 @@ const createBrand = asyncHandler(async (req, res) => {
 // Update Brand
 const updateBrand = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const updateBrand = await Brand.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -31,7 +31,7 @@ const updateBrand = asyncHandler(async (req, res) => {
 // Delete Brand
 const deleteBrand = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const deletedBrand = await Brand.findByIdAndDelete(id);
     res.json(deletedBrand);
@@ -43,7 +43,7 @@ const deleteBrand = asyncHandler(async (req, res) => {
 // Get Brand
 const getBrand = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const getBrand = await Brand.findById(id);
     res.json(getBrand);

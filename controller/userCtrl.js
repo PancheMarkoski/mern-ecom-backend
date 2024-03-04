@@ -6,7 +6,7 @@ const Coupon = require("../models/couponModel");
 const Order = require("../models/orderModel");
 
 const asyncHandler = require("express-async-handler");
-const validateMongoDbId = require("../utils/validateMongoDbId");
+// const validateMongoDbId = require("../utils/validateMongoDbId");
 const { generateRefreshToken } = require("../config/refreshToken");
 const jwt = require("jsonwebtoken");
 const sendEmail = require("./emailCtrl");
@@ -141,7 +141,7 @@ const logout = asyncHandler(async (req, res) => {
 // Update User
 const updateUser = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  validateMongoDbId(_id);
+  // validateMongoDbId(_id);
 
   try {
     const updatedUser = await User.findByIdAndUpdate(
@@ -165,7 +165,7 @@ const updateUser = asyncHandler(async (req, res) => {
 // Save User Address
 const saveAddress = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  validateMongoDbId(_id);
+  // validateMongoDbId(_id);
 
   try {
     const address = await User.findByIdAndUpdate(
@@ -196,7 +196,7 @@ const getAllusers = asyncHandler(async (req, res) => {
 // Get A Single User
 const getUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
 
   try {
     const getUser = await User.findById(id);
@@ -211,7 +211,7 @@ const getUser = asyncHandler(async (req, res) => {
 // Delete Single User
 const deleteUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
 
   try {
     const deletedUser = await User.findByIdAndDelete(id);
@@ -226,7 +226,7 @@ const deleteUser = asyncHandler(async (req, res) => {
 // Block User
 const blockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
 
   try {
     const block = await User.findByIdAndUpdate(
@@ -247,7 +247,7 @@ const blockUser = asyncHandler(async (req, res) => {
 // Unblock User
 const unblockUser = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
 
   try {
     const unblockUser = await User.findByIdAndUpdate(
@@ -269,7 +269,7 @@ const unblockUser = asyncHandler(async (req, res) => {
 const updatePassword = asyncHandler(async (req, res) => {
   const { _id } = req.user;
   const { password } = req.body;
-  validateMongoDbId(_id);
+  // validateMongoDbId(_id);
   const user = await User.findById(_id);
   if (password) {
     user.password = password;
@@ -338,7 +338,7 @@ const getWishlist = asyncHandler(async (req, res) => {
 const userCart = asyncHandler(async (req, res) => {
   const { productId, color, quantity, price } = req.body;
   const { _id } = req.user;
-  validateMongoDbId(_id);
+  // validateMongoDbId(_id);
   try {
     let newCart = await new Cart({
       userId: _id,
@@ -356,7 +356,7 @@ const userCart = asyncHandler(async (req, res) => {
 // Get User Cart
 const getUserCart = asyncHandler(async (req, res) => {
   const { _id } = req.user;
-  validateMongoDbId(_id);
+  // validateMongoDbId(_id);
   try {
     const cart = await Cart.find({ userId: _id })
       .populate({ path: "productId", model: "Product" })

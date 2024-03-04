@@ -1,6 +1,6 @@
 const Enquiry = require("../models/enqModel");
 const asyncHandler = require("express-async-handler");
-const validateMongoDbId = require("../utils/validateMongodbId");
+// const validateMongoDbId = require("../utils/validateMongodbId");
 
 const createEnquiry = asyncHandler(async (req, res) => {
   try {
@@ -12,7 +12,7 @@ const createEnquiry = asyncHandler(async (req, res) => {
 });
 const updateEnquiry = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const updatedEnquiry = await Enquiry.findByIdAndUpdate(id, req.body, {
       new: true,
@@ -24,7 +24,7 @@ const updateEnquiry = asyncHandler(async (req, res) => {
 });
 const deleteEnquiry = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const deletedEnquiry = await Enquiry.findByIdAndDelete(id);
     res.json(deletedEnquiry);
@@ -34,7 +34,7 @@ const deleteEnquiry = asyncHandler(async (req, res) => {
 });
 const getEnquiry = asyncHandler(async (req, res) => {
   const { id } = req.params;
-  validateMongoDbId(id);
+  // validateMongoDbId(id);
   try {
     const getaEnquiry = await Enquiry.findById(id);
     res.json(getaEnquiry);
